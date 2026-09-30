@@ -2,8 +2,8 @@
   "name": "scrapbook",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
+    "scripts": {
+    "dev": "node node_modules/.bin/next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
