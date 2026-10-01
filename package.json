@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@prisma/client": "^7.10.0",
     "better-auth": "^1.7.7",
     "mongodb": "^7.7.0",
     "mongoose": "^9.10.3",
@@ -23,6 +24,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.7",
+    "prisma": "^7.10.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
