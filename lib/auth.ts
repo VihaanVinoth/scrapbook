@@ -1,14 +1,12 @@
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import dbConnect from "./mongoose";
+import { MongoClient } from "mongodb";
 
-export async function initAuth() {
-  const mongooseInstance = await dbConnect();
-  const client = mongooseInstance.connection.getClient();
-  const instance = betterAuth({
-    database: mongodbAdapter(client.db()),
-    emailAndPassword: { enabled: true },
-  });
+const client = new MongoClient(process.env.MONGO_URI!);
 
-  return instance;
-}
+export const auth = betterAuth({
+  database: mongodbAdapter(client.db()),
+  emailAndPassword: {
+    enabled: true,
+  },
+});

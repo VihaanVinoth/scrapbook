@@ -1,13 +1,17 @@
 import { postBlog } from "./actions";
-import { initAuth } from "@/lib/auth";
+import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import PostForm from "@/components/PostForm";
 
 async function Page() {
-  const auth = await initAuth();
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (!session || session.user.email !== "dalx900@gmail.com") redirect("/");
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session || session.user.email !== "dalx900@gmail.com") {
+    redirect("/");
+  }
 
   return (
     <div>
