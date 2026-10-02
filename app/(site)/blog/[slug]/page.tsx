@@ -1,25 +1,48 @@
-import type { PostType } from "@/app/post/actions";
-import { redirect } from "next/navigation";
-import Post from "@/lib/PostModel";
-import dbConnect from "@/lib/mongoose";
+import { notFound } from "next/navigation";
+import { getPost, getAllPosts } from "@/lib/posts";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
-async function Page({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  await dbConnect();
-  const post = (await Post.findOne({ id: id })) as PostType;
-  if (!post) redirect("/");
+type PageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
 
-  return (
-    <div>
-      <h1>{post.title}</h1>
-      <div>{post.date.toLocaleDateString()}</div>
-      <div>
-        {post.content.map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
-      </div>
-    </div>
-  );
+export async function generateStaticParams() {
+  const posts = getAllPosts();
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
-export default Page;
+export default async function PostPage({ params }: PageProps) {
+  const { slug } = await params;
+
+  const post = getPost(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return (
+    <main>
+      <article>
+        <header>
+          <p>{post.date}</p>
+          <h1>{post.title}</h1>
+          <p>{post.description}</p>
+        </header>
+
+        <img
+          src={post.cover}
+          alt=""
+        />
+
+        <div>
+          <MDXRemote source={post.content} />
+        </div>
+      </article>
+    </main>
+  );
+}
