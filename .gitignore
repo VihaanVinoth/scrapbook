@@ -32,7 +32,10 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+<<<<<<< HEAD
 atlas-credentials.env
+=======
+>>>>>>> 08df618 (Initial commit from Create Next App)
 
 # vercel
 .vercel
@@ -40,5 +43,8 @@ atlas-credentials.env
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+<<<<<<< HEAD
 
 /lib/generated/prisma
+=======
+>>>>>>> 08df618 (Initial commit from Create Next App)
