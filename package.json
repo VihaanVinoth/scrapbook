@@ -9,17 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@better-auth/prisma-adapter": "^1.7.7",
-    "@prisma/adapter-pg": "^7.10.0",
-    "better-auth": "^1.7.7",
-    "gray-matter": "^4.0.3",
-    "mongoose": "^9.10.4",
     "next": "16.3.8",
-    "pg": "^8.23.1",
-=======
-    "next": "16.3.8",
->>>>>>> c3dbe83 (start fresh)
     "react": "19.2.8",
     "react-dom": "19.2.8"
   },
@@ -29,17 +19,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-<<<<<<< HEAD
-    "eslint-config-next": "16.3.7",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  },
-  "allowScripts": {
-    "unrs-resolver@1.12.2": true
-=======
     "eslint-config-next": "16.3.8",
     "tailwindcss": "^4",
     "typescript": "^5"
->>>>>>> c3dbe83 (start fresh)
   }
 }
