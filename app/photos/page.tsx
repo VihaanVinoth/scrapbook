@@ -1,4 +1,4 @@
-import PhotoCard from "@/components/PhotoCard";
+import PhotoGrid from "@/components/PhotoGrid";
 
 export default function Photos() {
   return (
@@ -6,9 +6,7 @@ export default function Photos() {
       <h1>Photos</h1>
       <p>All of my photography.</p>
 
-      <PhotoCard title="Melbourne Streets" />
-      <PhotoCard title="Nature" />
-      <PhotoCard title="Travel" />
+      <PhotoGrid />
     </main>
   );
 }
