@@ -1,12 +1,16 @@
-import PhotoGrid from "@/components/PhotoGrid";
+import PhotoCard from "@/components/PhotoCard";
 
-export default function Photos() {
+export default function Home() {
   return (
     <main>
-      <h1>Photos</h1>
-      <p>All of my photography.</p>
+      <h1>My Photo Blog</h1>
+      <p>A collection of my photography.</p>
 
-      <PhotoGrid />
+      <PhotoCard
+        title="Melbourne Streets"
+        camera="Canon EOS 7D"
+        image="/IMG_2284.JPG"
+      />
     </main>
   );
 }
