@@ -4,9 +4,16 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-
 async function createPost(formData: FormData) {
     "use server";
+
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session) {
+        redirect("/login");
+    }
 
     const title = formData.get("title") as string;
     const image = formData.get("image") as string;

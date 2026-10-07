@@ -2,6 +2,7 @@ import prisma from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { notFound, redirect } from "next/navigation";
 import { headers } from "next/headers";
+import slugify from "slugify";
 
 type EditPostPageProps = {
     params: Promise<{
@@ -12,10 +13,22 @@ type EditPostPageProps = {
 async function updatePost(id: number, formData: FormData) {
     "use server";
 
+    const session = await auth.api.getSession({
+        headers: await headers(),
+    });
+
+    if (!session) {
+        redirect("/login");
+    }
+
     const title = formData.get("title") as string;
-    const slug = formData.get("slug") as string;
     const image = formData.get("image") as string;
     const published = formData.get("published") === "on";
+
+    const slug = slugify(title, {
+        lower: true,
+        strict: true,
+    });
 
     await prisma.post.update({
         where: {
