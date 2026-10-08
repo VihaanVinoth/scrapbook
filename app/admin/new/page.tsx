@@ -3,6 +3,7 @@ import slugify from "slugify";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import PostForm from "@/components/PostForm";
 
 async function createPost(formData: FormData) {
     "use server";
@@ -24,16 +25,16 @@ async function createPost(formData: FormData) {
         strict: true,
     });
 
-    let finalSlug = slug;
-
     const existingPost = await prisma.post.findUnique({
         where: {
-            slug: finalSlug,
+            slug,
         },
     });
 
     if (existingPost) {
-        finalSlug = `${slug}-${Date.now()}`;
+        throw new Error(
+            "A post with this title already exists. Please choose another title."
+        );
     }
 
     await prisma.post.create({
@@ -65,46 +66,8 @@ export default async function NewPostPage() {
     return (
         <main className="mx-auto max-w-2xl px-6 py-12">
             <h1 className="text-4xl font-semibold">New Post</h1>
-            <form action={createPost} className="mt-10 space-y-6">
-                <div>
-                    <label htmlFor="title" className="block font-medium">
-                        Title
-                    </label>
-                    <input
-                        id="title"
-                        name="title"
-                        type="text"
-                        required
-                        className="mt-2 w-full rounded-lg border px-3 py-2"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="image" className="block font-medium">
-                        Photo URL
-                    </label>
-                    <input
-                        id="image"
-                        name="image"
-                        type="text"
-                        required
-                        className="mt-2 w-full rounded-lg border px-3 py-2"
-                        placeholder="/test-photo.jpg"
-                    />
-                </div>
-                <label className="flex items-center gap-2">
-                    <input
-                        name="published"
-                        type="checkbox"
-                    />
-                    Publish immediately
-                </label>
-                <button
-                    type="submit"
-                    className="rounded-lg bg-black px-5 py-2 text-white"
-                >
-                    Create Post
-                </button>
-            </form>
+
+            <PostForm action={createPost} />
         </main>
     );
 }
