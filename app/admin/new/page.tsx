@@ -1,9 +1,9 @@
 import prisma from "@/lib/db";
 import slugify from "slugify";
-import { auth } from "@/lib/auth"
-import { header } from "next/headers";
-import { redirect } from "next/navigation"
-import PostForm from "@/components/PostForm"
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import PostForm from "@/components/PostForm";
 
 async function createPost(formData: FormData) {
     "use server";
@@ -34,13 +34,13 @@ async function createPost(formData: FormData) {
     if (existingPost) {
         throw new Error(
             "A post with this title already exists. Please choose another title."
-        )
+        );
     }
 
     await prisma.post.create({
         data: {
             title,
-            slug: finalSlug,
+            slug,
             published,
             photos: {
                 create: {
@@ -54,10 +54,6 @@ async function createPost(formData: FormData) {
     redirect("/admin");
 }
 
-
-}
-
-    
 export default async function NewPostPage() {
     const session = await auth.api.getSession({
         headers: await headers(),
