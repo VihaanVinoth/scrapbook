@@ -8,7 +8,7 @@ export default function Home() {
       </h1>
 
       <p className="mt-3 text-zinc-600">
-        An album of the photos I have taken over the years.
+        This is an album of the photos I have taken over the years.
       </p>
 
       <div className="mt-12">

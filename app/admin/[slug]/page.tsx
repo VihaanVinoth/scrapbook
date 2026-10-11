@@ -98,7 +98,7 @@ export default async function EditPostPage({
             <EditPostForm
                 action={updatePost.bind(null, post.id)}
                 title={post.title}
-                image={firstPhoto?.url ?? ""}
+                image={firstPhoto.url ?? ""}
                 published={post.published}
             />
         </main>

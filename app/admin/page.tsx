@@ -50,7 +50,7 @@ export default async function AdminPage() {
                 <div>
                     <h1 className="text-4xl font-semibold">Admin</h1>
                     <p className="mt-2 text-zinc-500">
-                        Manage your photo posts.
+                        Photo Management
                     </p>
                 </div>
                 <Link
@@ -85,7 +85,7 @@ export default async function AdminPage() {
                                     href={`/admin/${post.slug}`}
                                     className="mt-4 inline-block text-sm underline"
                                 >
-                                    Edit
+                                    Edit Post
                                 </Link>
                                 <form action={deletePost} className="mt-2">
                                     <input
@@ -97,7 +97,7 @@ export default async function AdminPage() {
                                         type="submit"
                                         className="text-sm text-red-600 underline"
                                     >
-                                        Delete
+                                        Delete Post
                                     </button>
                                 </form>
                             </article>
