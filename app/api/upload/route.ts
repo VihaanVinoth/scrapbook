@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import cloudinary from "@/lib/cloudinary";
 
-// Fix
+// hi im just updating this
 
 export async function POST() {
     const session = await auth.api.getSession({
