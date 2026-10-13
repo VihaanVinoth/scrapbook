@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 
+// hi :D fixing
+
 export default function LoginPage() {
   const router = useRouter();
 
@@ -49,7 +51,7 @@ export default function LoginPage() {
         </div>
         <div>
           <label htmlFor="password" className="block font-medium">
-            Password
+            Enter Password
           </label>
           <input
             id="password"
