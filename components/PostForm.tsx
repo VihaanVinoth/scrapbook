@@ -16,7 +16,6 @@ export default function PostForm({ action }: PostFormProps) {
                 <label htmlFor="title" className="block font-medium">
                     Title
                 </label>
-
                 <input
                     id="title"
                     name="title"
@@ -25,9 +24,7 @@ export default function PostForm({ action }: PostFormProps) {
                     className="mt-2 w-full rounded-lg border px-3 py-2"
                 />
             </div>
-
             <ImageUpload onUpload={setImage} />
-
             <input
                 type="hidden"
                 name="image"

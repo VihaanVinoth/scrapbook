@@ -67,7 +67,7 @@ export default function ImageUpload({ onUpload }: ImageUploadProps) {
             setUploading(false);
         }
     }
-
+    
     return (
         <div>
             <label className="block font-medium">
